@@ -1,35 +1,14 @@
 // create web server
-// create a route to handle POST requests
-// create a route to handle GET requests
-// create a route to handle PUT requests
-// create a route to handle DELETE requests
-
 const express = require('express');
-const bodyParser = require('body-parser');
-const fs = require('fs');
-
 const app = express();
-app.use(bodyParser.json());
+const port = 3000;
 
-const COMMENTS_FILE = './comments.json';
-
+// create a path for /comments
 app.get('/comments', (req, res) => {
-  fs.readFile(COMMENTS_FILE, (err, data) => {
-    if (err) {
-      console.log(err);
-      process.exit(1);
-    }
-    res.json(JSON.parse(data));
-  });
+  res.send('This is a page of comments');
 });
 
-app.post('/comments', (req, res) => {
-  fs.readFile(COMMENTS_FILE, (err, data) => {
-    if (err) {
-      console.log(err);
-      process.exit(1);
-    }
-    const comments = JSON.parse(data);
-    const newComment = {
-        id: Date.now(),
-      };
+// listen to port 3000
+app.listen(port, () => {
+  console.log(`Server is listening at http://localhost:${port}`);
+});
